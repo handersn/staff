@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.staff.www">
+	<context:component-scan base-package="com.staff.control">
 	  <context:exclude-filter type="regex" 
 	       expression="com.staff.control.*"/>
 	</context:component-scan>
