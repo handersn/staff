@@ -1,16 +1,17 @@
 package com.staff.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.staff.domain.Staff;
 
 public interface StaffDao {
   List<?> selectAllStaffs();
 
-  List<?> findStaffs(Map<String,Object> params);
-  
-  Staff selectOne(int eno);
+  Staff selectStaffByEno(int eno);
+  List<?> selectStaffsByName(String name);
+  List<?> selectStaffsByPosition(String position);
+  List<?> selectStaffsByEmail(String email);
+  List<?> selectStaffsByPhone(int phone);
   
   void insert(Staff staff);
   

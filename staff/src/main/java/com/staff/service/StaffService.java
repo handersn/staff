@@ -32,9 +32,11 @@ public class StaffService {
 	staffDao.update(staff);
   }
   
-  public List<?> findStaffsByEno(int eno) {
-  	staffDao.selectStaffsByEno(eno);
+  public Staff selectStaffByEno(int eno) {
+  	staffDao.selectStaffByEno(eno);
   }
+  
+  
 }
 
 
