@@ -15,7 +15,7 @@
   
   <sql id="staffSelect">
   	SELECT eno,position,name,email,phone
-  	FROM members
+  	FROM steps
   </sql>
   
   <select id="selectAllStaffs" resultMap="staffMap">
@@ -37,30 +37,32 @@
   	WHERE position = #{position}
   </select>
   
+  <select id="selectStaffsByEmail" parameterType="String" resultType="staffMap">
+  	<include refid="staffSelect"/>
+  	WHERE email = #{email}
+  </select>
+  
+  <select id="selectStaffsByPhone" parameterType="int" resultType="staffMap">
+  	<include refid="staffSelect"/>
+  	WHERE phone = #{phone}
+  </select>
+  
   <insert id="insert" parameterType="Staff">
-    INSERT INTO members(position,name,email,phone) 
-    VALUES (#{position}, #{name}, #{sex}, #{birthDate}, #{phone}, #{selectLocal})
+    INSERT INTO steps(position,name,email,phone) 
+    VALUES (#{position}, #{name}, #{email}, #{phone})
   </insert>
   
-	<select id="selectGroupMembers" parameterType="int" resultType="map">
-		SELECT uname, birth, nick, phone, sex, myphoto, intro,
-		T2.manager_status
-		FROM members T1, gmembers T2
-		WHERE T2.gno = #{gno} and
-		T1.MNO = T2.MNO
-	</select>
-	
   <update id="update" parameterType="Staff">
-    UPDATE MEMBERS 
-    SET email = #{email},
-        uname = #{userName},
-        birth = #{birthDate},
-        nick = #{nickName}, 
+    UPDATE steps
+    SET position = #{position},
         phone = #{phone}, 
-        sex = #{sex}, 
-        intro = #{introWord}, 
-        lcode = #{selectLocal}
-    WHERE mno = #{memberNo}
+        name = #{name}, 
+        email = #{email}, 
+        phone = #{phone}
+    WHERE eno = #{eno}
   </update>
   
+  <delete id="delete" parameterType="int">
+  	DELETE FROM steps WHERE eno=#{eno}
+  </delete>
 </mapper>
