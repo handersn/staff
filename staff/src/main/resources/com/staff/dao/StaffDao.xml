@@ -22,42 +22,26 @@
     <include refid="staffSelect"/>
   </select>
   
-  <select id="findStaffs" parameterType="map" resultType="staffMap">
-   <include refid="staffSelect"/>
-   WHERE
-   <if test="position != null">
-    position = #{position}
-   </if>
-   <if test="name != null">
-    position = #{position}
-   </if>
-   <if test="position != null">
-    position = #{position}
-   </if>
+  <select id="selectStaffByEno" parameterType="int" resultType="staffMap">
+  	<include refid="staffSelect"/>
+  	WHERE eno = #{eno}
   </select>
   
-  <insert id="insert" parameterType="Member">
-    INSERT INTO MEMBERS(mno,email,pwd,uname,sex,birth,phone,lcode) 
-    VALUES (mno.nextval,#{email}, #{password}, #{userName}, #{sex}, #{birthDate}, #{phone}, #{selectLocal})
+  <select id="selectStaffsByName" parameterType="String" resultType="staffMap">
+  	<include refid="staffSelect"/>
+  	WHERE name = #{name}
+  </select>
+  
+  <select id="selectStaffsByPosition" parameterType="String" resultType="staffMap">
+  	<include refid="staffSelect"/>
+  	WHERE position = #{position}
+  </select>
+  
+  <insert id="insert" parameterType="Staff">
+    INSERT INTO members(position,name,email,phone) 
+    VALUES (#{position}, #{name}, #{sex}, #{birthDate}, #{phone}, #{selectLocal})
   </insert>
   
-  <!--회원정보 수정  -->
-  <select id="userInfo" parameterType="int" resultMap="memberMap">
-   SELECT T1.mno, T1.email, T1.pwd, T1.uname, T1.birth, T1.nick, T1.phone, T1.sex, T1.myphoto, T1.intro, T1.lcode, T2.lname
-   FROM MEMBERS T1, SLOCAL T2
-   WHERE T1.mno = #{memberNo} AND T1.lcode = T2.lcode  
-  </select>
-  
-  <!--주소 파싱  -->
-  <select id="userInfo1" parameterType="int" resultType="string">
-   SELECT lname 
-   FROM slocal 
-   WHERE lcode = 
-   (SELECT substr(lcode, 1, 2)
-    FROM MEMBERS
-    WHERE mno = #{value}) 
-  </select>
-
 	<select id="selectGroupMembers" parameterType="int" resultType="map">
 		SELECT uname, birth, nick, phone, sex, myphoto, intro,
 		T2.manager_status
@@ -66,7 +50,7 @@
 		T1.MNO = T2.MNO
 	</select>
 	
-  <update id="edit" parameterType="Member">
+  <update id="update" parameterType="Staff">
     UPDATE MEMBERS 
     SET email = #{email},
         uname = #{userName},
@@ -79,28 +63,4 @@
     WHERE mno = #{memberNo}
   </update>
   
-  <!--프로필 업로드  -->
-  <update id="insertPhoto" parameterType="Member">
-    UPDATE MEMBERS
-    SET
-     myphoto = #{userPhoto} 
-    WHERE mno= #{memberNo}
-  </update> 
-  
-  <!--아이디 찾기  -->
-  <select id="getId" parameterType="map" resultType="String">
-  SELECT email
-  FROM MEMBERS
-  WHERE uname = #{name} AND birth = #{birthDate}
-         AND phone = #{phone}
-   
-  </select>
-  
-  <!--비밀번호 찾기  -->
-  <select id="getPw" parameterType="map" resultType="String">
-  SELECT pwd
-  FROM MEMBERS
-  WHERE uname = #{name} AND birth = #{birthDate}
-         AND email = #{email}
-  </select>
 </mapper>
