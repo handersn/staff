@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.staff.domain.Product;
-import com.staff.service.MakerService;
-import com.staff.service.ProductService;
+//import com.staff.domain.Staff;
+//import com.staff.service.MakerService;
+//import com.staff.service.StaffService;
 
 @Controller
-@RequestMapping("/product")
-public class ProductControl {
-  static Logger log = Logger.getLogger(ProductControl.class);
+@RequestMapping("/staff")
+public class StaffControl {
+  static Logger log = Logger.getLogger(StaffControl.class);
   static final int PAGE_DEFAULT_SIZE = 5;
   
-  @Autowired ProductService     productService;
+  @Autowired StaffService     staffService;
   @Autowired MakerService       makerService;
   
   @Autowired ServletContext servletContext;
@@ -32,27 +32,27 @@ public class ProductControl {
   public ModelAndView form() throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.addObject("makers", makerService.getList());
-    mv.setViewName("product/ProductForm");
+    mv.setViewName("staff/StaffForm");
     return mv;
   }
  
   @RequestMapping(value="/add", method=RequestMethod.POST)
-  public String add(Product product) throws Exception {  
+  public String add(Staff staff) throws Exception {  
     String fileuploadRealPath = 
         servletContext.getRealPath("/fileupload");
     String filename = System.currentTimeMillis() + "_"; 
     File file = new File(fileuploadRealPath + "/" + filename);
-    product.getPhotofile().transferTo(file);
-    product.setPhoto(filename);
+    staff.getPhotofile().transferTo(file);
+    staff.setPhoto(filename);
 
-    productService.add(product);
+    staffService.add(staff);
     
     return "redirect:list.do";
   }
 
   @RequestMapping("/delete")
   public String delete(int no) throws Exception {
-    productService.delete(no);
+    staffService.delete(no);
     return "redirect:list.do";
   }
   
@@ -65,13 +65,13 @@ public class ProductControl {
     if (pageSize <= 0)
       pageSize = PAGE_DEFAULT_SIZE;
     
-    int maxPageNo = productService.getMaxPageNo(pageSize);
+    int maxPageNo = staffService.getMaxPageNo(pageSize);
     
     if (pageNo <= 0) pageNo = 1;
     if (pageNo > maxPageNo) pageNo = maxPageNo;
     
-    model.addAttribute("products", 
-        productService.getList(pageNo, pageSize));
+    model.addAttribute("staffs", 
+        staffService.getList(pageNo, pageSize));
     
     model.addAttribute("currPageNo", pageNo);
     
@@ -83,22 +83,22 @@ public class ProductControl {
       model.addAttribute("nextPageNo", (pageNo + 1));
     }
     
-    return "product/ProductList";
+    return "staff/StaffList";
   }
   
   @RequestMapping("/update")
-  public String update(Product product) throws Exception {
-    productService.update(product);
+  public String update(Staff staff) throws Exception {
+    staffService.update(staff);
     return "redirect:list.do";
   }
   
   @RequestMapping("/view")
   public String view(int no, Model model) throws Exception {
-    Product product = productService.get(no);
-    model.addAttribute("product", product);
-    model.addAttribute("photos", product.getPhotoList());
+    Staff staff = staffService.get(no);
+    model.addAttribute("staff", staff);
+    model.addAttribute("photos", staff.getPhotoList());
     model.addAttribute("makers", makerService.getList());
-    return "product/ProductView";
+    return "staff/StaffView";
   }
 }
 
