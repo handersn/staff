@@ -47,12 +47,12 @@
   	WHERE phone = #{phone}
   </select>
   
-  <insert id="insert" parameterType="Staff">
+  <insert id="insert" parameterType="map">
     INSERT INTO steps(position,name,email,phone) 
     VALUES (#{position}, #{name}, #{email}, #{phone})
   </insert>
   
-  <update id="update" parameterType="Staff">
+  <update id="update" parameterType="map">
     UPDATE steps
     SET position = #{position},
         phone = #{phone}, 

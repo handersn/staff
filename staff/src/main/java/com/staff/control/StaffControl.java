@@ -4,9 +4,9 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
-import java63.iumui.dao.StaffDao;
-import java63.iumui.domain.Staff;
-import java63.iumui.service.StaffService;
+import com.staff.dao.StaffDao;
+import com.staff.domain.Staff;
+import com.staff.service.StaffService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class StaffControl {
 	static Logger log = Logger.getLogger(StaffControl.class);
 	
-	@Autowired StaffDao       staffdao; 
+  @Autowired StaffDao       staffdao; 
   @Autowired StaffService   staffService;
   @Autowired ServletContext  servletContext;
   
