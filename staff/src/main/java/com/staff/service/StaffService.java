@@ -20,6 +20,26 @@ public class StaffService {
 	  return staffDao.selectAllStaffs();
   }
   
+  public Staff selectStaffByEno(int eno) {
+	  return staffDao.selectStaffByEno(eno);
+  }
+  
+  public List<?> selectStaffsByName(String name) {
+	  return staffDao.selectStaffsByName(name);
+  }
+  
+  public List<?> selectStaffsByPosition(String position) {
+	  return staffDao.selectStaffsByPosition(position);
+  }
+  
+  public List<?> selectStaffsByEmail(String email) {
+	  return staffDao.selectStaffsByEmail(email);
+  }
+  
+  public List<?> selectStaffsByPhone(int phone) {
+	  return staffDao.selectStaffsByPhone(phone);
+  }
+  
   public void insert(Staff staff) {
 	staffDao.insert(staff);
   }
@@ -31,12 +51,6 @@ public class StaffService {
   public void update(Staff staff) {
 	staffDao.update(staff);
   }
-  
-  public Staff selectStaffByEno(int eno) {
-  	staffDao.selectStaffByEno(eno);
-  }
-  
-  
 }
 
 
