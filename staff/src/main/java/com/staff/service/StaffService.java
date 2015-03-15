@@ -32,8 +32,8 @@ public class StaffService {
 	staffDao.update(staff);
   }
   
-  public List<?> findStaffsByEno() {
-  	Map<String, Object> params = new HashMap<>();
+  public List<?> findStaffsByEno(int eno) {
+  	staffDao.selectStaffsByEno(eno);
   }
 }
 
