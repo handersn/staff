@@ -22,37 +22,37 @@
     <include refid="staffSelect"/>
   </select>
   
-  <select id="selectStaffByEno" parameterType="int" resultType="staffMap">
+  <select id="selectStaffByEno" parameterType="int" resultMap="staffMap">
   	<include refid="staffSelect"/>
   	WHERE eno = #{eno}
   </select>
   
-  <select id="selectStaffsByName" parameterType="String" resultType="staffMap">
+  <select id="selectStaffsByName" parameterType="String" resultType="map">
   	<include refid="staffSelect"/>
   	WHERE name = #{name}
   </select>
   
-  <select id="selectStaffsByPosition" parameterType="String" resultType="staffMap">
+  <select id="selectStaffsByPosition" parameterType="String" resultType="map">
   	<include refid="staffSelect"/>
   	WHERE position = #{position}
   </select>
   
-  <select id="selectStaffsByEmail" parameterType="String" resultType="staffMap">
+  <select id="selectStaffsByEmail" parameterType="String" resultType="map">
   	<include refid="staffSelect"/>
   	WHERE email = #{email}
   </select>
   
-  <select id="selectStaffsByPhone" parameterType="int" resultType="staffMap">
+  <select id="selectStaffsByPhone" parameterType="int" resultType="map">
   	<include refid="staffSelect"/>
   	WHERE phone = #{phone}
   </select>
   
-  <insert id="insert" parameterType="map">
+  <insert id="insert" parameterType="Staff">
     INSERT INTO steps(position,name,email,phone) 
     VALUES (#{position}, #{name}, #{email}, #{phone})
   </insert>
   
-  <update id="update" parameterType="map">
+  <update id="update" parameterType="Staff">
     UPDATE steps
     SET position = #{position},
         phone = #{phone}, 
