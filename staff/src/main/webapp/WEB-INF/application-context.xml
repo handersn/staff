@@ -12,7 +12,6 @@
 	       expression="com.staff.control.*"/>
 	</context:component-scan>
 
-	<!-- Database 커넥션 풀 준비 -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -22,7 +21,6 @@
 		<property name="password" value="staff" /> 
 	</bean>
 
-	<!-- SqlSessionFactory 준비 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" 
