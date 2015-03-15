@@ -3,40 +3,37 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="java63.iumui.dao.MemberDao">
+<mapper namespace="com.staff.dao.StaffDao">
 
-  <resultMap type="Member" id="memberMap">
-    <id column="email" property="email"/>
-    <result column="mno" property="memberNo"/>
-    <result column="pwd" property="password"/>
-    <result column="uname" property="userName"/>
-    <result column="birth" property="birthDate"/>
-    <result column="nick" property="nickName"/>
+  <resultMap type="Staff" id="staffMap">
+    <id column="eno" property="eno"/>
+    <result column="position" property="position"/>
+    <result column="name" property="name"/>
+    <result column="email" property="email"/>
     <result column="phone" property="phone"/>
-    <result column="sex" property="sex"/>
-    <result column="myphoto" property="userPhoto"/>
-    <result column="intro" property="introWord"/>
-    <result column="lcode" property="selectLocal"/>
-    <result column="lname" property="localName"/>
   </resultMap>
   
-  <sql id="memberSelect">
-  	SELECT mno,email,pwd,uname,birth,nick,phone,sex,myphoto,intro,lcode
+  <sql id="staffSelect">
+  	SELECT eno,position,name,email,phone
   	FROM members
   </sql>
   
-  <select id="existUser" parameterType="map" resultMap="memberMap">
-    <include refid="memberSelect"/>
-    WHERE email=#{email} AND pwd=#{password}
+  <select id="selectAllStaffs" resultMap="staffMap">
+    <include refid="staffSelect"/>
   </select>
   
-  <select id="checkAv" parameterType="map" resultType="String">
-   SELECT email FROM MEMBERS
-   WHERE email=#{email}
-  </select>
-  
-  <select id="totalSize" resultType="int">
-  	SELECT count(MNO) FROM MEMBERS
+  <select id="findStaffs" parameterType="map" resultType="staffMap">
+   <include refid="staffSelect"/>
+   WHERE
+   <if test="position != null">
+    position = #{position}
+   </if>
+   <if test="name != null">
+    position = #{position}
+   </if>
+   <if test="position != null">
+    position = #{position}
+   </if>
   </select>
   
   <insert id="insert" parameterType="Member">

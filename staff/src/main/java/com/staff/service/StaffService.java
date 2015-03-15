@@ -16,6 +16,10 @@ public class StaffService {
   @Autowired 
   StaffDao staffDao;
   
+  public List<?> selectAllStaffs() {
+	  return staffDao.selectAllStaffs();
+  }
+  
   public void insert(Staff staff) {
 	staffDao.insert(staff);
   }
@@ -28,20 +32,8 @@ public class StaffService {
 	staffDao.update(staff);
   }
   
-  public List<?> selectAllStaffs() {
-	return staffDao.selectAllStaffs();
-  }
-  
-  public List<?> findStaffs(int eno, String email, int phone, String name, String position) {
+  public List<?> findStaffsByEno() {
   	Map<String, Object> params = new HashMap<>();
-  	
-    params.put("eno", eno);
-    params.put("email", email);
-    params.put("phone", phone);
-    params.put("name", name);
-    params.put("position", position);
-    
-    return staffDao.findStaffs(params);
   }
 }
 
