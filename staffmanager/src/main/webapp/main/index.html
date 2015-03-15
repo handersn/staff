@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>직원관리화면</title>
+<script type="text/javascript" src='../lib/js/jquery-1.11.1.js'></script>
+<link rel='stylesheet' href='../lib/css/bootstrap.css'>
+<style type="text/css">
+html {
+	color : black;
+}
+body {
+	margin-top : 25px;
+}
+#main-container {
+	width: 100%;
+	height: 100vh;
+}
+#manage-menu {
+	border-bottom: 3px solid black;
+	height: 2.5em;
+	line-height: 2em;
+}
+#menus {
+	position : relative;
+}
+#menus > div {
+	background-color : #f3f3f3;
+	height: 2em;
+	padding : 0 15px;
+	display : inline-block;
+}
+#content-container {
+	font-size : 15px;
+	margin-top : 5px;
+	width: 100%;
+	height: 80%;
+	border : 1px solid black;
+}
+#search-staff {
+	border-bottom : 1px solid #F3F3F3;
+	margin-bottom: 5px;
+	padding : 5px 15px;
+}
+#sch-staff-name {
+	width: 100%;
+	text-align: -webkit-center;
+	line-height: 98%;
+}
+#sch-result {
+	margin-top: 20px;
+	border : 1px solid black;
+	width: 100%;
+	height: 100%;
+	position: inherit;
+}
+#_result {
+	margin: 0 auto;
+	width: 80%;
+}
+
+#_result th , #_result td {
+	border : 1px solid black;
+	border-collapse: collapse !important;
+}
+</style>
+</head>
+<body>
+	<div id='main-container'>
+		<div id='manage-menu'>
+			<div id='menus'>
+				<div id='manage-staff' onclick="manageStaff()">직원 관리</div>
+				<div id='add-staff' onclick='addStaff()'>직원 등록</div>
+			</div>
+		</div>
+		<div id='content-container'>
+			<div id='search-staff'>
+				<div id='search-menus'>
+					<div class='sch-staff' id='sch-by-pos'>
+						<div class='sch-tools'>직급 :
+						<select id='select-pos'>
+							<option value='all'>모두보기</option>
+							<option value='dh'>부장</option>
+							<option value='dh'>차장</option>
+							<option value='sc'>과장</option>
+							<option value='dsc'>대리</option>
+							<option>사원</option>
+						</select>
+						<button>찾기</button>
+						</div>
+					</div>
+					<div class='sch-tools'>
+						<div class='sch-staff' id='sch-by-name'>이름 : 
+							<input type="text">
+							<button>찾기</button>
+						</div>
+						<div class='sch-staff' id='sch-by-eno'>직원번호 :
+							<input type="number">
+							<button>찾기</button>
+						</div>
+					</div>
+					<div class='sch-tools'>
+						<div class='sch-staff' id='sch-by-email'>이메일 :
+							<input type="email">
+							<button>찾기</button>
+						</div>
+						<div class='sch-staff' id='sch-by-phone'>전화번호 :
+							<input type="text">
+							<button>찾기</button>
+						</div>
+					</div>
+				</div>
+			</div><!-- 찾기 메뉴 -->
+			<div id='sch-result'>
+				<table id='_result'>
+					<tr>
+						<th>직원번호</th>
+						<th>직급</th>
+						<th>이름</th>
+						<th>전화번호</th>
+						<th>이메일</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+</script>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>직원등록정보</title>
+<link rel='stylesheet' href='js/bootstrap.css'>
+<link rel='stylesheet' href='js/bootstrap-theme.min.css'>
+<link rel='stylesheet' href='js/common.css'>
+</head>
+<style>
+label {
+	position:absolute;
+	width: 80px;
+	text-align: center;
+	border: 1px solid #999;
+	background-color: white;
+	padding: 4px 25px;
+	display: inline;
+	cursor: pointer;
+}
+.label_on {
+	color : #2E6DA4;
+	border-color: #2E6DA4;
+}
+#conTitle {
+	margin-left: 300px;
+}
+#manLb {
+	margin-left: 278px;
+}
+#womanLb {
+	margin-left: 360px;
+}
+#sign_form .radiobtn {
+ display: none;
+ margin:0px;
+ height:0px;
+ width: 0px;
+ font-size: small;
+}
+#clear {
+	margin: 2px 0;
+	height: 15px;
+}
+#sign_form input {
+	margin-left: 5px;
+	border: 0px;
+	font-size: x-large;
+	height : 50px;
+	width: 420px;
+}
+#sexDiv {
+	padding: 10px 5px;
+	color: #A9A9A9;
+}
+.row_group {
+	margin: 0px auto;
+	width: 500px;
+	border : 1px solid gray;
+	border-radius: 3px;
+}
+.row_group a {
+	margin-top: 10px;
+	position: absolute;
+	text-decoration: none;
+	padding: 5px 15px;
+	border: 1px solid #999;
+}
+.row_title {
+	font-size: x-large;
+}
+.sign_row {
+	width : 500px;
+	height: 51px;
+	margin : 0 auto;
+}
+.sign_form {
+	margin : 15px auto;
+}
+.sign_form hr {
+	margin:0;
+}
+.error {
+	display: block;
+}
+#signInBtn {
+	width: 498px;
+	height: 50px;
+	font-size: x-large;
+	background-color: #999;
+}
+</style>
+<body>
+	<div id='content_container'>
+		<div class='header'></div>
+		
+			<!-- contents start -->
+				<div id='conTitle'>
+					<h2>직원정보등록</h2>
+				</div>
+				<hr>
+				<div class='sign_form'>
+					<form id='sign_form' action="">
+					
+						<div class='row_group'>
+						<div id='nameDiv' class="sign_row">
+								<span class="insert_box">
+									<input type="text" id="name" placeholder="직급">
+								</span>
+								<div id='idMsg' class='error'></div>
+							</div>
+						<div id='nameDiv' class="sign_row">
+								<span class="insert_box">
+									<input type="text" id="name" placeholder="이름">
+								</span>
+								<div id='idMsg' class='error'></div>
+							</div>
+							<div id='emailDiv' class="sign_row">
+								<span class="insert_box">
+									<input type="text" id="email" placeholder="이메일 (아이디로 사용합니다.)">
+								</span>
+								<div id='emailMsg' class='error'></div>
+							</div>
+							<div id='phoneNoDiv' class="sign_row">
+								<span class="insert_box">
+									<input type="text" id="phoneNo" placeholder="휴대전화번호">
+								</span>
+								<div id='phoneNoMsg' class='error'></div>
+							</div>
+
+							<hr>
+							
+						</div>
+						<div id="clear"></div>
+						<div class='row_group'>
+							
+							<hr>
+							
+							
+						</div>
+						
+						<div class='row_group'>
+							<button id="signInBtn" type="button" >가입하기</button>
+						</div>
+					</form>
+				</div>
+			<!-- contents  end  -->
+			
+		<div class='footer'></div>
+	</div>
+</body>
+<script src='js/jquery-1.11.1.js'></script>
+<script src='signin.js'></script>
+<script src='checkfield.js'></script>
+<script>
+ $('.jender label').click(function(event){
+	 $('.jender label').attr('class','');
+	 $(this).attr('class','label_on');
+ });
+</script>
+</html>
