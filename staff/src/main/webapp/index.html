@@ -1,0 +1,130 @@
+<!-- 메인 화면 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>캠퍼스 마켓 :: 캠퍼스 마켓과 함께 즐거운 캠핑 되세요</title>
+<script src='js/jquery-1.11.1.js'></script>
+<script src='js/bootstrap.js'></script>
+<link rel='stylesheet' href='css/bootstrap.css'>
+<link rel='stylesheet' href='css/cpsmarket.css'>
+<link rel='stylesheet' href='index.css'>
+<style>
+#wing-menu-l , #wing-menu-r {
+ border : 1px solid #A6A6A6;
+ border-radius : 5px;
+ width: 12.7%;
+ height:450px;
+ padding: 10px;
+ position : fixed;
+ top: 14em;
+}
+#wing-menu-l {
+	left: 18px;
+}
+#wing-menu-r {
+	right: 18px;
+}
+</style>
+<script>
+</script>
+</head>
+<body id='cm-main'>
+	<div id='myMenu'>
+		<div id='mm-container'>
+			<div id='left-m'><span id='userNick'>나그네님!</span> <span>로그인 후 더 많은 컨텐츠를 즐겨보세요.</span></div>
+			<div id='right-m'>
+				<div id='nolog'>
+					<ul>
+						<li><a id='loadlogin' href="#" onclick="login();">로그인</a><span class="partition">|</span></li>
+						<li><a id='signin' href="#" data-toggle="modal" data-target="#signinModal">회원가입</a><span class="partition">|</span></li>
+						<li><a href="#" onclick="alarm();">찜한물건</a><span class="partition">|</span></li>
+						<li><a href="#" onclick="alarm();">내 텐트</a></li>
+					</ul>
+				</div>
+				<div id='logged'>
+					<ul>
+						<li><a id='myInfo' href="#" data-toggle="modal" data-target="#myInfoModal">내 정보</a><span class="partition">|</span></li>
+						<li><a id='fList'>내 물건</a><span class="partition">|</span></li>
+						<li><a id='wish'>찜한물건</a><span class="partition">|</span></li>
+						<li><a id='myTent'>내 텐트</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<header id="cm-header">
+		<div id='header-container'>
+			<div id='cm-logo'><span>CAMPERS</span><br><span>MARKET</span></div>
+			<div id='searchbar'>
+				<input id='searchSite' type="text" placeholder="캠핑장이름을 검색하세요">
+				<span id='searchBtn' onclick="search();">찾기</span>
+			</div>
+			<div id='cm-h-content'></div>
+		</div>
+	</header>
+	<div id='alarmbox'>
+	</div>
+	<nav id="cm-m-nav">
+		<table id="cm-m-menu">
+			<tr>
+				<td class='menus' data-cmenu="carpool" ><img class='menu-icon' src="imagesource/m1/glyphicons-44-group.png"><span>같이가요</span></td>
+				<td class='menus' data-cmenu="trade"><img class='menu-icon' src="imagesource/m1/glyphicons-82-refresh.png"><span>바꿔요</span></td>
+				<td class='menus' data-cmenu="present"><img class='menu-icon' src="imagesource/m1/glyphicons-70-gift.png"><span>드려요</span></td>
+				<td class='menus' data-cmenu="help"><img class='menu-icon' src="imagesource/m1/glyphicons-523-user-flag.png"><span>도와줘요</span></td>
+				<td class='menus' data-cmenu="chat"><img class='menu-icon' src="imagesource/m1/glyphicons-246-chat.png"><span>시끌시끌</span></td>
+			</tr>
+		</table>
+	</nav>
+	<iframe id='cm-content' name='cm-content' src='contents/intro.html'>
+	</iframe>
+	<div id='signin-modal'></div>
+	<div id='my-Info'></div>
+	<div id='wing-menu-l'>
+		<p>왼쪽 리모콘</p>
+		<p>북마크식 즐겨찾기 기능(알람식, 실시간 시간 위주로 정렬)</p>
+	</div>
+	<div id='wing-menu-r'>
+		<p>라이트윙 - 지용근</p>
+		<p>내가 봤던 물건들 리스트가 올라온다. 와꾸 짜놔라</p>
+	</div>
+</body>
+<script>
+$(function() {
+	$('#signin-modal').load('forms/signin.html');
+	$('#my-Info').load('forms/myInfo.html');
+});
+
+$('.menus').click(function(){
+	console.log($(this).data("cmenu"));
+	console.log($(this).children().next().html());
+	var menuAddress = $(this).data("cmenu");
+	
+	$('#cm-content').attr('src','contents/' + menuAddress);
+});
+
+function search() {
+	alert("It works!");
+};
+
+function login() {
+	$('#cm-content').attr('src','forms/login');
+}
+
+/* 화면 코딩용 버튼입니다. */
+$('#cm-logo').click(function(){
+	if($('#nolog').css('display') == 'none'){
+		$('#logged').css('display','none');
+		$('#nolog').css('display','');
+	} else if($('#logged').css('display') == 'none'){
+		$('#logged').css('display','inline');
+		$('#nolog').css('display','none');
+	}
+});
+/* 코딩 후 삭제해 주세요 */
+
+$('#myInfo').click(function(){
+})
+	
+</script>
+</html>
