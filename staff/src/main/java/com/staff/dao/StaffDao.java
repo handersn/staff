@@ -18,6 +18,4 @@ public interface StaffDao {
   void update(Staff staff);
   
   void delete(int eno);
-  
-  int totalSize();
 }
