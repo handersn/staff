@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>직원등록정보</title>
-<link rel='stylesheet' href='js/bootstrap.css'>
-<link rel='stylesheet' href='js/bootstrap-theme.min.css'>
-<link rel='stylesheet' href='js/common.css'>
+<link rel='stylesheet' href='js/bootstrap.js'>
+<link rel='stylesheet' href='js/bootstrap.min.js'>
+<script src='js/jquery-1.11.1.js'></script>
+<script src='checkfield.js'></script>
 </head>
 <style>
 label {
@@ -105,7 +106,7 @@ label {
 						<div class='row_group'>
 						<div id='nameDiv' class="sign_row">
 								<span class="insert_box">
-									<input type="text" id="name" placeholder="직급">
+									<input type="text" id="rank" placeholder="직급">
 								</span>
 								<div id='idMsg' class='error'></div>
 							</div>
@@ -123,7 +124,7 @@ label {
 							</div>
 							<div id='phoneNoDiv' class="sign_row">
 								<span class="insert_box">
-									<input type="text" id="phoneNo" placeholder="휴대전화번호">
+									<input type="text" id="phone" placeholder="휴대전화번호">
 								</span>
 								<div id='phoneNoMsg' class='error'></div>
 							</div>
@@ -149,9 +150,9 @@ label {
 		<div class='footer'></div>
 	</div>
 </body>
-<script src='js/jquery-1.11.1.js'></script>
-<script src='signin.js'></script>
-<script src='checkfield.js'></script>
+
+<!-- <script src='signin.js'></script> -->
+
 <script>
  $('.jender label').click(function(event){
 	 $('.jender label').attr('class','');

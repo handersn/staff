@@ -49,6 +49,11 @@ public class StaffService {
   public void update(Staff staff) {
 	staffDao.update(staff);
   }
+  
+	  public void add(Staff staff) {
+	  	staffDao.insert(staff);
+	  	
+	  }
 }
 
 

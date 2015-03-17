@@ -10,26 +10,11 @@ var re_mail = /^([\w\.-]+)@([a-z\d\.-]+)\.([a-z\.]{2,6})$/; // 이메일 검사�
 var re_tel = /^[0-9]{8,11}$/; // 전화번호 검사식
 
 $(function(){
-  loadLocalList();
   
   
 });//ready()
 
-//지역 검색
-function loadLocalList() {
-  
-  $.getJSON('../json/board/local_big.do', 
-    function(data){
-    
-      console.log(data);
-    
-      require(['text!templates/local-big.html'], function(html){
-        var template = Handlebars.compile(html);
-        $('#grp_state').html( template(data) );
-      });
-      
-    });
-}
+
 
 $('#grp_state').change(function(){
     
@@ -48,24 +33,24 @@ $('#grp_state').change(function(){
 });
 
 
-//이메일 가능여부
-   $("#email").focusout(function(){
-     var email = $("#email").val();
-     $.getJSON('../json/auth/check.do?email=' + email, 
-          function(data){
-       console.log(data.check);
-       
-       if(data.check != null){
-         $('.email_confirm').html("사용 불가!"); //해당 내용을 보여준다
-         $('#email').focus();
-       }else if(re_mail.test( $('#email').val() ) != true){
-         $('.email_confirm').html("사용 불가!"); //해당 내용을 보여준다
-         $('#email').focus();
-       }else if(re_mail.test( $('#email').val() ) == true ){
-         $('.email_confirm').html("사용 가능!"); //해당 내용을 보여준다
-       }            
-          });
-   });
+////이메일 가능여부
+//   $("#email").focusout(function(){
+//     var email = $("#email").val();
+//     $.getJSON('../json/auth/check.do?email=' + email, 
+//          function(data){
+//       console.log(data.check);
+//       
+//       if(data.check != null){
+//         $('.email_confirm').html("사용 불가!"); //해당 내용을 보여준다
+//         $('#email').focus();
+//       }else if(re_mail.test( $('#email').val() ) != true){
+//         $('.email_confirm').html("사용 불가!"); //해당 내용을 보여준다
+//         $('#email').focus();
+//       }else if(re_mail.test( $('#email').val() ) == true ){
+//         $('.email_confirm').html("사용 가능!"); //해당 내용을 보여준다
+//       }            
+//          });
+//   });
    
    //패스워드 가능여부
    $('#passwd').keyup(function(){
@@ -122,25 +107,24 @@ $('#grp_state').change(function(){
    
    //가입완료 버튼
    $('#signInBtn').click(function(){
-     if (!validateForm()) return;
+	   console.log("가입하기");
+//     if (!validateForm()) return;
      //console.log($('input:radio[name="sex"]:checked').val());
      //console.log(selectLocal);
      
      
-     $.post('../json/auth/add.do' //  URL 
+     $.post('../staff/add.do' //  URL 
          , {  //서버에 보낼 데이터를 객체에 담아 넘긴다 
-           email : $('#email').val(),     //이메일
-           password : $('#passwd').val(),  //비밀번호
-           userName : $('#name').val(),   //이름
-           sex : $('input:radio[name="sex"]:checked').val(), //성별
-           birthDate : $('#birth').val(), //생년월일
-           phone : $('#phoneNo').val(),  //핸드폰번호
-           selectLocal : $('#selectLocal').val() //지역
+        	 position : $('#rank').val(),     //직
+        	 name : $('#name').val(),  // 이름 
+        	 email : $('#email').val(),   //이메일 
+        	 phone : $('#phone').val(),  // 전화번호 
+           
          } 
          , function(result){ // 서버로부터 응답을 받았을 때 호출될 메서드
            if (result.status == "success") {
              alert("성공!! ");
-             location.href="/iumui/index.html";
+             location.href="/staffmanager/main";
              
            } else {
              alert("등록 실패!");

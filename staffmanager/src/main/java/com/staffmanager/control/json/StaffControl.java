@@ -1,4 +1,4 @@
-package com.staffmanager.control;
+package com.staffmanager.control.json;
 
 import java.util.HashMap;
 
@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.staffmanager.dao.StaffDao;
 import com.staffmanager.domain.Staff;
@@ -21,6 +22,18 @@ public class StaffControl {
   @Autowired StaffDao       staffDao; 
   @Autowired StaffService   staffService;
   @Autowired ServletContext  servletContext;
+  
+  @RequestMapping(value="/add", method=RequestMethod.POST)
+  public Object add(Staff staff) throws Exception {  
+    System.out.println(staff);
+    
+    staffService.add(staff);
+    
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    
+    return resultMap;
+  }
   
 //  @RequestMapping(value="/add", method=RequestMethod.POST)
 //  public Object updataPhoto(Staff staff) throws Exception {
